@@ -1,4 +1,4 @@
-#include <MSP430F2274.h>
+#include <msp430f2274.h>
 #include "SERIAL.h"
 #include "../uwicmp.h"
 

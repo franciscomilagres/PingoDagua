@@ -1,8 +1,8 @@
-#include <MSP430F247.h>
+#include <msp430f247.h>
 #include <stdlib.h>
 #include "SERIALDL.h"
 #include "../uwicmp.h"
-#include "../uw_ids.h"
+//#include "../uw_ids.h"
 
 void main( void )
 {

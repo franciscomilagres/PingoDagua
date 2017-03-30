@@ -18,7 +18,7 @@
 * @brief Esta biblioteca tem como objetivo possibilitar uma comunicacao via serial
 */
 
-#include <MSP430F247.h>
+#include <msp430f247.h>
 #include "SERIALDL.h"
 
 /**

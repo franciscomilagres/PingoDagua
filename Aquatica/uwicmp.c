@@ -257,6 +257,8 @@ int UWICMP_decompress(struct Uw_Packet *source, struct Packet *dest){
 
   dest->hdr.checksum = 0;
   dest->hdr.checksum = checksum(dest, sizeof(struct Packet));
+
+	removeID(&map, aux);
   
   return 1;
 }
