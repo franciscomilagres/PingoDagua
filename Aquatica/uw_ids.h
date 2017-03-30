@@ -49,18 +49,18 @@ typedef struct ListIDs{
 } idsmap;
 
 
-/*UWIDs_init (pro todo):
+/*UWIDs_init:
 * Aloca e inicia uma lista encadeada em l
 * Retorna 1 em caso de sucesso e -1 em caso de fracasso.
-
-int UWIDs_init(idsmap **l); */
+*/
+int UWIDs_init(idsmap **l);
 
 /*UWIDs_init:
 * Inicia uma lista encadeada ja alocada, em l
 * retorna nada nao e na proxima versao nao vai ter isso (todo)
-*/
+*
 void UWIDs_init(idsmap *l);
-
+*/
 
 /* addID:
 *Tarefa: adiciona o id e o uwid em map
@@ -97,8 +97,3 @@ int exist_uwID(idsmap *map, u_int8_t uwID);
 
 
 #endif
-
-/*TODO:
-*Passar declaracao de map pra ca, sendo restrita a esta biblioteca
-* e passar map pra alocacao dinamica
-*/

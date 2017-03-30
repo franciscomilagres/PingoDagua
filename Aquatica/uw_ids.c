@@ -19,10 +19,10 @@
 #include <stdlib.h>
 #include "uw_ids.h"
 
-/*UWIDs_init (pro todo):
+/*UWIDs_init:
 * Aloca e inicia uma lista encadeada em l
 * Retorna 1 em caso de sucesso e -1 em caso de fracasso.
-
+*/
 int UWIDs_init(idsmap **l){
 	*l = (idsmap *)malloc(sizeof(idsmap));
 	if(*l == NULL)
@@ -31,18 +31,18 @@ int UWIDs_init(idsmap **l){
 	(*l)->first = NULL;
 	(*l)->last = NULL;
 	return 1;
-}*/
+}
 
 /*UWIDs_init:
 * Inicia uma lista encadeada ja alocada, em l
-* retorna nada nao e na proxima versao nao vai ter isso (todo)
-*/
+* retorna nada nao e na proxima versao nao vai ter isso
+
 void UWIDs_init(idsmap *l){
 	l->numIDs = 0;
 	l->first = NULL;
 	l->last = NULL;
 }
-
+*/
 
 /* addID:
 *Tarefa: adiciona o id e o uwid em map

@@ -30,7 +30,7 @@
 
 
 //vai mapear ids reais e ids comprimidos
-idsmap map;			//precisa ser inicializada
+idsmap *map;			//precisa ser inicializada
 
 
 /*checksum:
@@ -80,7 +80,7 @@ u_int8_t UWICMP_checksum(struct Uw_Packet p, int datalen){
 }
 
 /*UWICMP_init:
-* Inicializa a lista encadeada em map
+* Inicializa a lista encadeada em map e possiveis outras coisas
 * Retorna nada nao e na proxima versao nao vai ter isso (todo no .h)
 */
 void UWICMP_init(){
@@ -184,9 +184,9 @@ int UWICMP_compress(struct Packet *source, struct Uw_Packet *dest){
   }
   
 
-  if(get_uwID(&map, source->hdr.un.echo.id) == -1)
+  if(get_uwID(map, source->hdr.un.echo.id) == -1)
     return -1;          //nem a pau que vou abrir chave e identar a galera
-  id = get_uwID(&map, source->hdr.un.echo.id);
+  id = get_uwID(map, source->hdr.un.echo.id);
   
   seq = (source->hdr.un.echo.sequence & 0x1F00) >> 8; //5 bits LSB (big endian) do original, acho que funciona.
   
@@ -245,7 +245,7 @@ int UWICMP_decompress(struct Uw_Packet *source, struct Packet *dest){
 
   aux = (source->hdr.byte2 & B2_ECHO_ID) << 3;  //000xxxxx --> xxxxx000
   aux |= (source->hdr.byte3 & B3_ECHO_ID) >> 5; //00000xxx --> xxx00000
-  aux = get_realID(&map, aux);
+  aux = get_realID(map, aux);
   if(aux == -1)
     return -1;
   dest->hdr.un.echo.id = aux;
@@ -258,7 +258,7 @@ int UWICMP_decompress(struct Uw_Packet *source, struct Packet *dest){
   dest->hdr.checksum = 0;
   dest->hdr.checksum = checksum(dest, sizeof(struct Packet));
 
-	removeID(&map, aux);
+	removeID(map, aux);
   
   return 1;
 }
@@ -268,5 +268,4 @@ int UWICMP_decompress(struct Uw_Packet *source, struct Packet *dest){
 /*TODO:
 *Suporte a Big endian e little endian;
 *Suporte a tamanhos diferentes (tb no ICMPforwarder)
-*Remover UWICMP_init quando map for dinamico!
 */

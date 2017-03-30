@@ -18,11 +18,11 @@ serialmn:
 
 dl_main:	msp_uwicmp	msp_uw_ids	serialdl
 			msp430-gcc -mmcu='msp430f247' -Wall DL/main.c uwicmp.o uw_ids.o SERIALDL.o -o dl_main.o
-			msp430-objcopy -O ihex dl_main.o main.hex
+			msp430-objcopy -O ihex dl_main.o dl_main.hex
 
 mn_main:	msp_uwicmp	msp_uw_ids	serialmn
 			msp430-gcc -mmcu='msp430f2274' -Wall MN/main.c uwicmp.o uw_ids.o SERIAL.o -o mn_main.o
-			msp430-objcopy -O ihex mn_main.o main.hex
+			msp430-objcopy -O ihex mn_main.o mn_main.hex
 
 debug:	msp_main
 			mspdebug uif
