@@ -4,6 +4,14 @@
 #include "../uwicmp.h"
 //#include "../uw_ids.h"
 
+/* DL_init:
+*Tarefa: Inicializacoes a serem feitas pela DL
+*/
+void DL_init(){
+
+}
+
+
 void main( void )
 {
   // Stop watchdog timer to prevent time out reset

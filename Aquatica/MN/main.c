@@ -2,6 +2,26 @@
 #include "SERIAL.h"
 #include "../uwicmp.h"
 
+//SINK indica se este no eh um SINK (1 = sim, 0 = nao)
+#define SINK 0
+
+//ID indica o ID inicial deste no (como um endereco MAC)
+#define ID 0
+
+/*Node_Init:
+*Tarefa: Inicializacoes feitas pelo No
+*/
+void Node_Init(){
+
+}
+
+/*send_Hello:
+*Tarefa: Mensagem para descoberta de vizinhos (construcao da
+* topologia da rede)
+*/
+void send_Hello(){
+
+}
 
 /*get_answer:
 * Tarefa: Analisa a mensagem "ask" e retorna a resposta em
