@@ -1,16 +1,9 @@
+
 #include <msp430f247.h>
 #include <stdlib.h>
 #include "SERIALDL.h"
 #include "../uwicmp.h"
-//#include "../uw_ids.h"
-
-/* DL_init:
-*Tarefa: Inicializacoes a serem feitas pela DL
-*/
-void DL_init(){
-
-}
-
+#include "../uw_ids.h"
 
 void main( void )
 {
@@ -18,8 +11,8 @@ void main( void )
   WDTCTL = WDTPW + WDTHOLD;
   struct Packet pckt;
   struct Uw_Packet uwpckt;
-  P1DIR = 0x1E;
-  P1OUT = 0x1E;
+  P1DIR = 0x1F;
+  P1OUT = 0x1F;
   uwpckt.data[0] = 0;
 	UWICMP_init();
   SERIAL_init(9600,0,0,0,0,0);
@@ -34,8 +27,8 @@ void main( void )
     if(SERIAL_has_new_msg(0)){
       pckt = *(struct Packet *)rx_buffer;
       SERIAL_clear_buffer();
-      P1OUT &= 0xE1;
-      P1OUT |= (char) ((pckt.hdr.un.echo.sequence & 0x0F00) >> 7); 		//MSB
+      P1OUT &= 0xE0;
+      P1OUT |= (char) ((pckt.hdr.un.echo.sequence & 0x1F00) >> 8); 		//MSB
       UWICMP_compress(&pckt, &uwpckt);
       SERIAL_write_vector(1,(unsigned char *)&uwpckt,UWSIZE);
       SERIAL_enable_interruption_receive(1);
