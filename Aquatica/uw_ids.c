@@ -49,16 +49,16 @@ void UWIDs_init(idsmap *l){
 *Retorna 1 em caso de sucesso ou -1 em caso de erro
 */
 int addID(idsmap *map, u_int16_t realID, u_int8_t uwID){
-	Pointer aux;
+	idcPointer aux;
 	
 	if(map->numIDs == 0){			//se nao tiver nenhuma celula
-		map->first = (Pointer)malloc(sizeof(IDcell));
+		map->first = (idcPointer)malloc(sizeof(IDcell));
 		if(map->first == NULL)
 			return -1;
 		map->last = map->first;				//a ultima celula eh a primeira
 	}
 	else{
-		map->last->next = (Pointer)malloc(sizeof(IDcell));  //se tiver, alocando no next do proximo
+		map->last->next = (idcPointer)malloc(sizeof(IDcell));  //se tiver, alocando no next do proximo
 		if(map->last->next == NULL)
 			return -1;
 		map->last = map->last->next;
@@ -77,7 +77,7 @@ int addID(idsmap *map, u_int16_t realID, u_int8_t uwID){
 *Tarefa: remove a célula que contem o realID
 */
 void removeID(idsmap *map, u_int16_t realID){
-	Pointer aux1, aux2;
+	idcPointer aux1, aux2;
 
 	aux1 = map->first;
 	if(aux1->realID == realID){			//ai nao tem ninguem antes dele
@@ -107,7 +107,7 @@ void removeID(idsmap *map, u_int16_t realID){
 *Tarefa: Procura pelo uwID em map. Se existir, retorna 1. Se nao, retorna 0.
 */
 int exist_uwID(idsmap *map, u_int8_t uwID){
-	Pointer aux;
+	idcPointer aux;
 
 	aux = map->first;
 	while(aux != NULL && aux->uwID != uwID){
@@ -125,7 +125,7 @@ int exist_uwID(idsmap *map, u_int8_t uwID){
 * Se nao houver mais IDs disponiveis, retorna -1
 */
 int get_uwID(idsmap *map, u_int16_t realID){
-	Pointer aux;
+	idcPointer aux;
 	u_int8_t uwID;
 
 	aux = map->first;
@@ -165,7 +165,7 @@ int get_uwID(idsmap *map, u_int16_t realID){
 * Se nao existir, retorna -1. (tecnicamente isto deve ser impossivel)
 */
 int get_realID(idsmap *map, u_int8_t uwID){
-	Pointer aux;
+	idcPointer aux;
 
 	aux = map->first;
 	while(aux != NULL && aux->uwID != uwID){

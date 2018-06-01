@@ -25,7 +25,7 @@
 
 #define MSB 0xFF00
 #define LSB 0x00FF
-typedef struct idcell* Pointer;
+typedef struct idcell* idcPointer;
 
 
 
@@ -36,15 +36,15 @@ typedef struct idcell{
 	u_int16_t realID;
 	u_int8_t uwID;
 
-	Pointer next;						//celula seguinte na lista encadeada
+	idcPointer next;						//celula seguinte na lista encadeada
 
 } IDcell;
 
 typedef struct ListIDs{
 	int numIDs;					//numero de ids
 	
-	Pointer first;					//primeiro da lista
-	Pointer last;						//ultimo da lista
+	idcPointer first;					//primeiro da lista
+	idcPointer last;						//ultimo da lista
 
 } idsmap;
 
